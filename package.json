@@ -13,7 +13,7 @@
     "prepublishOnly": "npm run build"
   },
   "bin": {
-  "brain-games": "dist/bin/brain-games.js"
+    "brain-games": "dist/bin/brain-games.js"
   },
   "repository": {
     "type": "git",
@@ -34,5 +34,8 @@
     "babel-core": "*",
     "babel-preset-env": "*",
     "babel-preset-stage-0": "*"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.7"
   }
 }
