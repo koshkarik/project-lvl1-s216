@@ -1,4 +1,4 @@
 #!/usr/local/bin/node
-import { sayHello } from '..';
+import sayHello from '..';
 
 sayHello();
