@@ -1,0 +1,38 @@
+{
+  "name": "brain-games-by-yarik",
+  "version": "1.0.0",
+  "description": "funny questions",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "test",
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
+  },
+  "bin": {
+  "brain-games": "dist/bin/brain-games.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koshkarik/brain-games.git"
+  },
+  "keywords": [
+    "brain-games",
+    "hexlet"
+  ],
+  "author": "yarik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koshkarik/brain-games/issues"
+  },
+  "homepage": "https://github.com/koshkarik/brain-games#readme",
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-preset-env": "*",
+    "babel-preset-stage-0": "*"
+  }
+}
