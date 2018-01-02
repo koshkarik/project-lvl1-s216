@@ -1,4 +1,5 @@
-#!/usr/local/bin/node
+#!/usr/bin/env node
 import sayHello from '..';
 
 sayHello();
+
