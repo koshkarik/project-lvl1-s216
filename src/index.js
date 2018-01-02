@@ -6,14 +6,11 @@ const giveAndCheckAnswer = () => {
   const randNumb = giveRandNumb();
   console.log(`Question: ${randNumb}`);
   const answer = readlineSync.question('Your answer: ');
+  const correctAnswer = randNumb % 2 === 0 ? 'yes' : 'no';
   if ((randNumb % 2 === 0 && answer === 'yes') || (randNumb % 2 !== 0 && answer === 'no')) {
     return true;
   }
-  if (answer === 'yes') {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
-  }
+  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
   return false;
 };
 
