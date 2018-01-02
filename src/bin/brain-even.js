@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
-import { oddEvenQuiz } from '..';
+import makeGame from '..';
+import { oddEven, message } from '../games/evenOdd';
 
-oddEvenQuiz();
+makeGame(message, oddEven);

@@ -1,19 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const giveRandNumb = () => Math.floor((Math.random() * 100) + 1);
-
-const giveAndCheckAnswer = () => {
-  const randNumb = giveRandNumb();
-  console.log(`Question: ${randNumb}`);
-  const answer = readlineSync.question('Your answer: ');
-  const correctAnswer = randNumb % 2 === 0 ? 'yes' : 'no';
-  if ((randNumb % 2 === 0 && answer === 'yes') || (randNumb % 2 !== 0 && answer === 'no')) {
-    return true;
-  }
-  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-  return false;
-};
-
+// still need to export those functions for braingames.js in bin
 export const welcomeMsg = () => {
   console.log('Welcome to the Brain Games!');
 };
@@ -24,13 +11,25 @@ export const sayHello = () => {
   return userName;
 };
 
-export const oddEvenQuiz = () => {
+// all helpers functions
+export const giveRandNumb = () => Math.floor((Math.random() * 100) + 1);
+
+export const askQuestion = str => console.log(`Question: ${str}`);
+
+export const userAnswer = () => readlineSync.question('Your answer: ');
+
+export const explainWrongAnswer = (answer, correctAnswer) => console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+
+// Main constructor.
+// You have to put message of the quiz as first argument and function as second argument.
+// This function should return true or false value, depending on user answer!
+const makeGame = (quizMsg, gameAndCheckFunc) => {
   let attempt = 0;
   welcomeMsg();
-  console.log('Answer "yes" if number even otherwise answer "no". \n');
+  console.log(`${quizMsg}\n`);
   const name = sayHello();
   while (attempt !== 3) {
-    if (giveAndCheckAnswer()) {
+    if (gameAndCheckFunc()) {
       attempt += 1;
       console.log('Correct!');
     } else {
@@ -40,3 +39,6 @@ export const oddEvenQuiz = () => {
   }
   console.log(`Congratulations, ${name}!`);
 };
+
+export default makeGame;
+
