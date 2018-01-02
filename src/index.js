@@ -20,14 +20,14 @@ export const welcomeMsg = () => {
 
 export const sayHello = () => {
   const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
+  console.log(`Hello, ${userName}! \n`);
   return userName;
 };
 
 export const oddEvenQuiz = () => {
   let attempt = 0;
   welcomeMsg();
-  console.log('Answer "yes" if number even otherwise answer "no".');
+  console.log('Answer "yes" if number even otherwise answer "no". \n');
   const name = sayHello();
   while (attempt !== 3) {
     if (giveAndCheckAnswer()) {
