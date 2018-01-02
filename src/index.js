@@ -9,6 +9,11 @@ const giveAndCheckAnswer = () => {
   if ((randNumb % 2 === 0 && answer === 'yes') || (randNumb % 2 !== 0 && answer === 'no')) {
     return true;
   }
+  if (answer === 'yes') {
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
+  } else {
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
+  }
   return false;
 };
 
