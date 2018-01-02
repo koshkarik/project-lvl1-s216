@@ -7,7 +7,7 @@ export const oddEven = () => {
   askQuestion(randNumb);
   const answer = userAnswer();
   const correctAnswer = randNumb % 2 === 0 ? 'yes' : 'no';
-  if ((randNumb % 2 === 0 && answer === 'yes') || (randNumb % 2 !== 0 && answer === 'no')) {
+  if (answer === correctAnswer) {
     return true;
   }
   explainWrongAnswer(answer, correctAnswer);
