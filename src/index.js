@@ -22,7 +22,7 @@ export const askQuestion = str => console.log(`Question: ${str}`);
 export const userAnswer = () => readlineSync.question('Your answer: ');
 
 // takes wrong and correct answer and returns console.log with those values
-export const explainWrongAnswer = (answer, correctAnswer) => console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+const explainWrongAnswer = (answer, correctAnswer) => console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
 
 // Main constructor.
 // You have to put message of the quiz as first argument and function as second argument.
@@ -34,10 +34,12 @@ const makeGame = (quizMsg, gameAndCheckFunc) => {
   console.log(`${quizMsg}\n`);
   const name = sayHello();
   while (attempt !== 3) {
-    if (gameAndCheckFunc()) {
+    const concreteGameObj = gameAndCheckFunc();
+    if (concreteGameObj.flag) {
       attempt += 1;
       console.log('Correct!');
     } else {
+      explainWrongAnswer(concreteGameObj.answer, concreteGameObj.correctAnswer);
       console.log(`Let's try again, ${name}!`);
       return;
     }
@@ -45,5 +47,7 @@ const makeGame = (quizMsg, gameAndCheckFunc) => {
   console.log(`Congratulations, ${name}!`);
 };
 
-export default makeGame;
+const gameBuilder = makeGameFunc => (msg, game) => () => makeGameFunc(msg, game);
 
+// in your game section put msg and game as arguments than export it to bin file and call it!
+export const make = gameBuilder(makeGame);

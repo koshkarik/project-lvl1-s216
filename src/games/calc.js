@@ -1,38 +1,31 @@
-import { giveRandNumb, askQuestion, userAnswer, explainWrongAnswer } from '..';
+import { giveRandNumb, askQuestion, userAnswer, make } from '..';
 
-export const message = 'What is the result of the expression?';
+const message = 'What is the result of the expression?';
 
-export const calc = () => {
+const calc = () => {
   const firstNumb = giveRandNumb();
   const secondNumb = giveRandNumb();
   const numToDecideMathExpression = giveRandNumb() - 1;
-  let operation;
+  let operation = null;
+  let correctAnswer = null;
   if (numToDecideMathExpression < 34) {
     operation = '+';
+    correctAnswer = firstNumb + secondNumb;
   } else if (numToDecideMathExpression < 67) {
     operation = '-';
+    correctAnswer = firstNumb - secondNumb;
   } else {
     operation = '*';
+    correctAnswer = firstNumb * secondNumb;
   }
   askQuestion(`${String(firstNumb)} ${operation} ${String(secondNumb)}`);
-  let correctAnswer;
-  switch (operation) {
-    case '+':
-      correctAnswer = firstNumb + secondNumb;
-      break;
-    case '-':
-      correctAnswer = firstNumb - secondNumb;
-      break;
-    case '*':
-      correctAnswer = firstNumb * secondNumb;
-      break;
-    default:
-      return false;
-  }
   const answer = userAnswer();
   if (Number(answer) === correctAnswer) {
-    return true;
+    return { flag: true, answer, correctAnswer };
   }
-  explainWrongAnswer(answer, correctAnswer);
-  return false;
+  return { flag: false, answer, correctAnswer };
 };
+
+const calcBrainGame = make(message, calc);
+
+export default calcBrainGame;

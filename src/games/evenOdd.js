@@ -1,15 +1,19 @@
-import { giveRandNumb, askQuestion, userAnswer, explainWrongAnswer } from '..';
+import { giveRandNumb, askQuestion, userAnswer, make } from '..';
 
-export const message = 'Answer "yes" if number even otherwise answer "no".';
+const message = 'Answer "yes" if number even otherwise answer "no".';
 
-export const oddEven = () => {
+const oddEven = () => {
   const randNumb = giveRandNumb();
   askQuestion(randNumb);
   const answer = userAnswer();
   const correctAnswer = randNumb % 2 === 0 ? 'yes' : 'no';
   if (answer === correctAnswer) {
-    return true;
+    return { flag: true, answer, correctAnswer };
   }
-  explainWrongAnswer(answer, correctAnswer);
-  return false;
+  return { flag: false, answer, correctAnswer };
 };
+
+const oddEvenBrainGame = make(message, oddEven);
+
+export default oddEvenBrainGame;
+
