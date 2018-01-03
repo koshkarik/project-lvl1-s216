@@ -1,6 +1,6 @@
 {
   "name": "brain-games-by-yarik",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "funny questions",
   "main": "dist/index.js",
   "files": [
