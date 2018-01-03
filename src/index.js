@@ -16,30 +16,31 @@ export const sayHello = () => {
 export const giveRandNumb = () => Math.floor((Math.random() * 100) + 1);
 
 // asks your desired question before game begins
-export const askQuestion = str => console.log(`Question: ${str}`);
+const askQuestion = str => console.log(`Question: ${str}`);
 
 // uses readlineSync and returns user input - so you don't have to handle this library
-export const userAnswer = () => readlineSync.question('Your answer: ');
+const userAnswer = () => readlineSync.question('Your answer: ');
 
 // takes wrong and correct answer and returns console.log with those values
 const explainWrongAnswer = (answer, correctAnswer) => console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
 
-// Main constructor.
-// You have to put message of the quiz as first argument and function as second argument.
-// This function should return true or false value, depending on user answer!
-// Also before return false you have to use explainWrongAnswer to provide answer to user
-const makeGame = (quizMsg, gameAndCheckFunc) => {
+// our gameFunc should return object
+// {message: message before the game, question: task(string), correctAnswer }
+const makeGame = (gameFunc) => {
   let attempt = 0;
   welcomeMsg();
-  console.log(`${quizMsg}\n`);
+  let gameInfo = gameFunc();
+  console.log(`${gameInfo.message}\n`);
   const name = sayHello();
   while (attempt !== 3) {
-    const concreteGameObj = gameAndCheckFunc();
-    if (concreteGameObj.flag) {
+    if (attempt !== 0) gameInfo = gameFunc();
+    askQuestion(gameInfo.question);
+    const answer = userAnswer();
+    if (answer === String(gameInfo.correctAnswer)) {
       attempt += 1;
       console.log('Correct!');
     } else {
-      explainWrongAnswer(concreteGameObj.answer, concreteGameObj.correctAnswer);
+      explainWrongAnswer(answer, gameInfo.correctAnswer);
       console.log(`Let's try again, ${name}!`);
       return;
     }
@@ -47,7 +48,7 @@ const makeGame = (quizMsg, gameAndCheckFunc) => {
   console.log(`Congratulations, ${name}!`);
 };
 
-const gameBuilder = makeGameFunc => (msg, game) => () => makeGameFunc(msg, game);
+const gameBuilder = makeGameFunc => game => () => makeGameFunc(game);
 
-// in your game section put msg and game as arguments than export it to bin file and call it!
+// in your game section put game as arguments than export it to bin file and call it!
 export const make = gameBuilder(makeGame);

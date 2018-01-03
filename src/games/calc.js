@@ -1,31 +1,24 @@
-import { giveRandNumb, askQuestion, userAnswer, make } from '..';
-
-const message = 'What is the result of the expression?';
+import { giveRandNumb, make } from '..';
 
 const calc = () => {
   const firstNumb = giveRandNumb();
   const secondNumb = giveRandNumb();
   const numToDecideMathExpression = giveRandNumb() - 1;
-  let operation = null;
+  let question = '';
   let correctAnswer = null;
   if (numToDecideMathExpression < 34) {
-    operation = '+';
+    question = `${firstNumb} + ${secondNumb}`;
     correctAnswer = firstNumb + secondNumb;
   } else if (numToDecideMathExpression < 67) {
-    operation = '-';
+    question = `${firstNumb} - ${secondNumb}`;
     correctAnswer = firstNumb - secondNumb;
   } else {
-    operation = '*';
+    question = `${firstNumb} * ${secondNumb}`;
     correctAnswer = firstNumb * secondNumb;
   }
-  askQuestion(`${String(firstNumb)} ${operation} ${String(secondNumb)}`);
-  const answer = userAnswer();
-  if (Number(answer) === correctAnswer) {
-    return { flag: true, answer, correctAnswer };
-  }
-  return { flag: false, answer, correctAnswer };
+  return { message: 'What is the result of the expression?', question, correctAnswer };
 };
 
-const calcBrainGame = make(message, calc);
+const calcBrainGame = make(calc);
 
 export default calcBrainGame;
