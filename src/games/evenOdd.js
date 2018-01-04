@@ -1,12 +1,13 @@
-import { giveRandNumb, make } from '..';
+import { generateGame } from '..';
 
-const oddEven = () => {
-  const randNumb = giveRandNumb();
+const message = 'Answer "yes" if number even otherwise answer "no".';
+
+const oddEven = (randNumb) => {
   const correctAnswer = randNumb % 2 === 0 ? 'yes' : 'no';
-  return { message: 'Answer "yes" if number even otherwise answer "no".', question: randNumb, correctAnswer };
+  return { question: randNumb, correctAnswer };
 };
 
-const oddEvenBrainGame = make(oddEven);
+const oddEvenBrainGame = generateGame(oddEven, message, 1);
 
 export default oddEvenBrainGame;
 

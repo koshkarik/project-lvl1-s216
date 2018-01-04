@@ -24,16 +24,19 @@ const userAnswer = () => readlineSync.question('Your answer: ');
 // takes wrong and correct answer and returns console.log with those values
 const explainWrongAnswer = (answer, correctAnswer) => console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
 
+// makes fixed length array with random numbers
+const makeArrWithRandomNumbers = num => Array(num).fill(null).map(item => giveRandNumb(item));
+
 // our gameFunc should return object
 // {message: message before the game, question: task(string), correctAnswer }
-const makeGame = (gameFunc) => {
+const makeGame = (gameFunc, message, argsNum) => {
   let attempt = 0;
   welcomeMsg();
-  let gameInfo = gameFunc();
-  console.log(`${gameInfo.message}\n`);
+  console.log(`${message}\n`);
   const name = sayHello();
   while (attempt !== 3) {
-    if (attempt !== 0) gameInfo = gameFunc();
+    const argsArray = makeArrWithRandomNumbers(argsNum);
+    const gameInfo = gameFunc(...argsArray);
     askQuestion(gameInfo.question);
     const answer = userAnswer();
     if (answer === String(gameInfo.correctAnswer)) {
@@ -48,7 +51,9 @@ const makeGame = (gameFunc) => {
   console.log(`Congratulations, ${name}!`);
 };
 
-const gameBuilder = makeGameFunc => game => () => makeGameFunc(game);
+const gameBuilder = makeGameFunc => (game, message, argsNum) =>
+  () => makeGameFunc(game, message, argsNum);
 
-// in your game section put game as arguments than export it to bin file and call it!
-export const make = gameBuilder(makeGame);
+// in your game section put game as first argument, task message as second argument,
+// quantity of random numbers needed for game function, than export it to bin file and call it!
+export const generateGame = gameBuilder(makeGame);

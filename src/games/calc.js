@@ -1,9 +1,8 @@
-import { giveRandNumb, make } from '..';
+import { generateGame } from '..';
 
-const calc = () => {
-  const firstNumb = giveRandNumb();
-  const secondNumb = giveRandNumb();
-  const numToDecideMathExpression = giveRandNumb() - 1;
+const message = 'What is the result of the expression?';
+
+const calc = (firstNumb, secondNumb, numToDecideMathExpression) => {
   let question = '';
   let correctAnswer = null;
   if (numToDecideMathExpression < 34) {
@@ -16,9 +15,9 @@ const calc = () => {
     question = `${firstNumb} * ${secondNumb}`;
     correctAnswer = firstNumb * secondNumb;
   }
-  return { message: 'What is the result of the expression?', question, correctAnswer };
+  return { question, correctAnswer };
 };
 
-const calcBrainGame = make(calc);
+const calcBrainGame = generateGame(calc, message, 3);
 
 export default calcBrainGame;

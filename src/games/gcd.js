@@ -1,21 +1,20 @@
-import { giveRandNumb, make } from '..';
+import { generateGame } from '..';
 
-const gcd = () => {
-  const firstNumb = giveRandNumb();
-  const secondNumb = giveRandNumb();
+const message = 'Find the greatest common divisor of given numbers.';
+
+const gcd = (firstNumb, secondNumb) => {
   const smallestNumb = firstNumb < secondNumb ? firstNumb : secondNumb;
   const biggestNumb = smallestNumb === firstNumb ? secondNumb : firstNumb;
   const question = `${firstNumb} ${secondNumb}`;
-  const message = 'Find the greatest common divisor of given numbers.';
   function findRecursive(smallest, biggest, div = 1) {
     if (smallest % div === 0 && biggest % (smallest / div) === 0) return smallest / div;
     if (div > smallest / 3) return !(smallest % 2) && !(biggest % 2) ? 2 : 1;
     return findRecursive(smallest, biggest, div + 1);
   }
   const correctAnswer = findRecursive(smallestNumb, biggestNumb);
-  return { message, question, correctAnswer };
+  return { question, correctAnswer };
 };
 
-const gcdBrainGame = make(gcd);
+const gcdBrainGame = generateGame(gcd, message, 2);
 
 export default gcdBrainGame;
