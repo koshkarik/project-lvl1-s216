@@ -5,9 +5,9 @@ const message = 'Balance the given number.';
 const balance = (firstNumb, secondNumb) => {
   const question = String(firstNumb) + String(secondNumb);
   const numbArr = question.split('').map(item => Number(item));
-  function recurseBalance(arr, max = -Infinity, min = Infinity) {
-    let maxNumb = max;
-    let minNumb = min;
+  function recurseBalance(arr) {
+    let maxNumb = -Infinity;
+    let minNumb = Infinity;
     let minIndex;
     let maxIndex;
     const workArr = arr.slice();
