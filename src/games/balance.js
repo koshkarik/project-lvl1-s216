@@ -1,10 +1,9 @@
-import { generateGame } from '..';
+import { generateGame, giveRandNumb } from '..';
 
 const message = 'Balance the given number.';
 
-const balance = (firstNumb, secondNumb) => {
-  const question = String(firstNumb) + String(secondNumb);
-  const numbArr = question.split('').map(item => Number(item));
+const balance = (numbStr) => {
+  const numbArr = numbStr.split('').map(item => Number(item));
   function recurseBalance(arr) {
     let maxNumb = -Infinity;
     let minNumb = Infinity;
@@ -28,10 +27,15 @@ const balance = (firstNumb, secondNumb) => {
     workArr[minIndex] += 1;
     return recurseBalance(workArr);
   }
-  const correctAnswer = recurseBalance(numbArr).sort((a, b) => a - b).join('');
+  return recurseBalance(numbArr).sort((a, b) => a - b).join('');
+};
+
+const makeBalanceGame = () => {
+  const question = String(giveRandNumb()) + String(giveRandNumb());
+  const correctAnswer = balance(question);
   return { question, correctAnswer };
 };
 
-const balanceBrainGame = generateGame(balance, message, 2);
+const balanceBrainGame = generateGame(makeBalanceGame, message);
 
 export default balanceBrainGame;

@@ -1,8 +1,11 @@
-import { generateGame } from '..';
+import { generateGame, giveRandNumb } from '..';
 
 const message = 'What is the result of the expression?';
 
-const calc = (firstNumb, secondNumb, numToDecideMathExpression) => {
+const calc = () => {
+  const firstNumb = giveRandNumb();
+  const secondNumb = giveRandNumb();
+  const numToDecideMathExpression = giveRandNumb();
   let question = '';
   let correctAnswer = null;
   if (numToDecideMathExpression < 34) {
@@ -18,6 +21,7 @@ const calc = (firstNumb, secondNumb, numToDecideMathExpression) => {
   return { question, correctAnswer };
 };
 
-const calcBrainGame = generateGame(calc, message, 3);
+
+const calcBrainGame = generateGame(calc, message);
 
 export default calcBrainGame;
