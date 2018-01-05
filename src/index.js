@@ -15,6 +15,8 @@ export const sayHello = () => {
 // generates random number between 1 and 100
 export const giveRandNumb = () => Math.floor((Math.random() * 100) + 1);
 
+export const giveSmRandNumb = () => Math.floor((Math.random() * 10) + 1);
+
 // asks your desired question before game begins
 const askQuestion = str => console.log(`Question: ${str}`);
 
