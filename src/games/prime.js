@@ -3,15 +3,15 @@ import { generateGame, giveRandNumb } from '..';
 const message = 'Is this number prime?';
 
 const isPrime = (numb) => {
+  const checker = Math.floor(numb / 2);
   if (numb === 0 || numb === 1) return false;
-  let check = Math.floor(numb / 2);
-  while (check >= 2) {
-    if (numb % check === 0) {
-      return false;
-    }
-    check -= 1;
+  function findRecursive(number, checkNum) {
+    if (checkNum <= 2) return true;
+    if (numb % checkNum === 0) return false;
+    const newCheck = checkNum - 1;
+    return findRecursive(numb, newCheck);
   }
-  return true;
+  return findRecursive(numb, checker);
 };
 
 const makePrimeGame = () => {
