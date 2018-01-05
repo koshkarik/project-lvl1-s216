@@ -1,14 +1,13 @@
 import { generateGame, giveRandNumb } from '..';
 
 const gcd = (firstNumb, secondNumb) => {
-  const smallestNumb = Math.min(firstNumb, secondNumb);
-  const biggestNumb = Math.max(firstNumb, secondNumb);
-  function findRecursive(smallest, biggest, div = 1) {
-    if (smallest % div === 0 && biggest % (smallest / div) === 0) return smallest / div;
-    if (div > smallest / 3) return !(smallest % 2) && !(biggest % 2) ? 2 : 1;
-    return findRecursive(smallest, biggest, div + 1);
+  let num1 = firstNumb;
+  let num2 = secondNumb;
+  while (num1 !== 0 && num2 !== 0) {
+    if (num1 > num2) num1 %= num2;
+    else num2 %= num1;
   }
-  return findRecursive(smallestNumb, biggestNumb);
+  return num1 + num2;
 };
 
 const makeGcdGame = () => {

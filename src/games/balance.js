@@ -2,37 +2,18 @@ import { generateGame, giveRandNumb } from '..';
 
 const message = 'Balance the given number.';
 
-const balance = (numbStr) => {
-  const numbArr = numbStr.split('').map(item => Number(item));
-  function recurseBalance(arr) {
-    let maxNumb = -Infinity;
-    let minNumb = Infinity;
-    let minIndex;
-    let maxIndex;
-    const workArr = arr.slice();
-    arr.forEach((num, ind) => {
-      if (num > maxNumb) {
-        maxNumb = num;
-        maxIndex = ind;
-      }
-      if (num < minNumb) {
-        minNumb = num;
-        minIndex = ind;
-      }
-    });
-    if (maxNumb - minNumb <= 1) {
-      return workArr;
-    }
-    workArr[maxIndex] -= 1;
-    workArr[minIndex] += 1;
-    return recurseBalance(workArr);
-  }
-  return recurseBalance(numbArr).sort((a, b) => a - b).join('');
+const balance = (arr) => {
+  const workArr = arr.slice().sort((a, b) => a - b);
+  if (workArr[workArr.length - 1] - workArr[0] <= 1) return workArr;
+  workArr[0] += 1;
+  workArr[workArr.length - 1] -= 1;
+  return balance(workArr);
 };
 
 const makeBalanceGame = () => {
   const question = String(giveRandNumb()) + String(giveRandNumb());
-  const correctAnswer = balance(question);
+  const numbArr = question.split('').map(item => Number(item));
+  const correctAnswer = balance(numbArr).join('');
   return { question, correctAnswer };
 };
 
