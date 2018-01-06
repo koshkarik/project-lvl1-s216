@@ -1,4 +1,4 @@
-import { generateGame, giveRandNumb } from '..';
+import { makeGame, giveRandNumb } from '..';
 
 const message = 'Is this number prime?';
 
@@ -20,6 +20,6 @@ const makePrimeGame = () => {
   return { question, correctAnswer };
 };
 
-const primeGame = generateGame(makePrimeGame, message);
+const primeGame = () => makeGame(makePrimeGame, message);
 
 export default primeGame;

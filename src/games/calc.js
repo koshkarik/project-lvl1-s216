@@ -1,4 +1,4 @@
-import { generateGame, giveRandNumb } from '..';
+import { makeGame, giveRandNumb } from '..';
 
 const message = 'What is the result of the expression?';
 
@@ -18,10 +18,10 @@ const calc = () => {
     question = `${firstNumb} * ${secondNumb}`;
     correctAnswer = firstNumb * secondNumb;
   }
-  return { question, correctAnswer };
+  return { question, correctAnswer: String(correctAnswer) };
 };
 
 
-const calcBrainGame = generateGame(calc, message);
+const calcBrainGame = () => makeGame(calc, message);
 
 export default calcBrainGame;

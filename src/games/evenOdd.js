@@ -1,4 +1,4 @@
-import { generateGame, giveRandNumb } from '..';
+import { makeGame, giveRandNumb } from '..';
 
 const message = 'Answer "yes" if number even otherwise answer "no".';
 
@@ -9,7 +9,7 @@ const makeOddEvenGame = () => {
   return { question: number, correctAnswer: oddEven(number) };
 };
 
-const oddEvenBrainGame = generateGame(makeOddEvenGame, message);
+const oddEvenBrainGame = () => makeGame(makeOddEvenGame, message);
 
 export default oddEvenBrainGame;
 

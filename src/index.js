@@ -31,7 +31,7 @@ const explainWrongAnswer = (answer, correctAnswer) => console.log(`'${answer}' i
 
 // our gameFunc should return object
 // {message: message before the game, question: task(string), correctAnswer }
-const makeGame = (gameFunc, message) => {
+export const makeGame = (gameFunc, message) => {
   let attempt = 0;
   welcomeMsg();
   console.log(`${message}\n`);
@@ -40,7 +40,7 @@ const makeGame = (gameFunc, message) => {
     const gameInfo = gameFunc();
     askQuestion(gameInfo.question);
     const answer = userAnswer();
-    if (answer === String(gameInfo.correctAnswer)) {
+    if (answer === gameInfo.correctAnswer) {
       attempt += 1;
       console.log('Correct!');
     } else {
@@ -52,8 +52,8 @@ const makeGame = (gameFunc, message) => {
   console.log(`Congratulations, ${name}!`);
 };
 
-const gameBuilder = makeGameFunc => (game, message) => () => makeGameFunc(game, message);
+// const gameBuilder = makeGameFunc => (game, message) => () => makeGameFunc(game, message);
 
 // in your game section put game as first argument, task message as second argument,
 // quantity of random numbers needed for game function, than export it to bin file and call it!
-export const generateGame = gameBuilder(makeGame);
+// export const generateGame = gameBuilder(makeGame);

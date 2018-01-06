@@ -1,4 +1,4 @@
-import { generateGame, giveRandNumb } from '..';
+import { makeGame, giveRandNumb } from '..';
 
 const message = 'Balance the given number.';
 
@@ -17,6 +17,6 @@ const makeBalanceGame = () => {
   return { question, correctAnswer };
 };
 
-const balanceBrainGame = generateGame(makeBalanceGame, message);
+const balanceBrainGame = () => makeGame(makeBalanceGame, message);
 
 export default balanceBrainGame;

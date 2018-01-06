@@ -1,4 +1,4 @@
-import { generateGame, giveRandNumb } from '..';
+import { makeGame, giveRandNumb } from '..';
 
 const gcd = (firstNumb, secondNumb) => {
   let num1 = firstNumb;
@@ -14,12 +14,12 @@ const makeGcdGame = () => {
   const num1 = giveRandNumb();
   const num2 = giveRandNumb();
   const question = `${num1} ${num2}`;
-  const correctAnswer = gcd(num1, num2);
+  const correctAnswer = String(gcd(num1, num2));
   return { question, correctAnswer };
 };
 
 const message = 'Find the greatest common divisor of given numbers.';
 
-const gcdBrainGame = generateGame(makeGcdGame, message);
+const gcdBrainGame = () => makeGame(makeGcdGame, message);
 
 export default gcdBrainGame;

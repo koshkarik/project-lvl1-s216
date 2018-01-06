@@ -1,4 +1,4 @@
-import { generateGame, giveSmRandNumb } from '..';
+import { makeGame, giveSmRandNumb } from '..';
 
 const message = 'What number is missing in this progression?';
 
@@ -17,12 +17,12 @@ const makeProgressionGame = () => {
   const num2 = giveSmRandNumb();
   const num3 = giveSmRandNumb() - 1;
   const progression = makeProgression(num1, num2);
-  const correctAnswer = progression[num3];
+  const correctAnswer = String(progression[num3]);
   progression[num3] = '..';
   const question = progression.join(' ');
   return { question, correctAnswer };
 };
 
-const progressionBrainGame = generateGame(makeProgressionGame, message);
+const progressionBrainGame = () => makeGame(makeProgressionGame, message);
 
 export default progressionBrainGame;
